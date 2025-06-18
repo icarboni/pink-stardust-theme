@@ -85,7 +85,7 @@
         "color_scheme": "scheme-1",
         "show_view_all": false,
         "swipe_on_mobile": false,
-        "image_ratio": "adapt",
+        "image_ratio": "sqaure",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,

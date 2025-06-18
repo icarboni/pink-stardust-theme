@@ -169,11 +169,13 @@
     {%- endif -%}
 
     {%- liquid
-      if section.settings.menu != blank
-        if section.settings.menu_type_desktop == 'dropdown'
-          render 'header-dropdown-menu'
-        elsif section.settings.menu_type_desktop != 'drawer'
-          render 'header-mega-menu'
+      if section.settings.show_menu
+        if section.settings.menu != blank
+          if section.settings.menu_type_desktop == 'dropdown'
+            render 'header-dropdown-menu'
+          elsif section.settings.menu_type_desktop != 'drawer'
+            render 'header-mega-menu'
+          endif
         endif
       endif
     %}
@@ -492,7 +494,14 @@
       ],
       "default": "center",
       "label": "t:sections.header.settings.mobile_logo_position.label"
-    },    
+    },
+    {
+      "type": "checkbox",
+      "id": "show_menu",
+      "default": false,
+      "label": "t:sections.header.settings.show_menu.label",
+      "info": "t:sections.header.settings.show_menu.info"
+    },
     {
       "type": "link_list",
       "id": "menu",

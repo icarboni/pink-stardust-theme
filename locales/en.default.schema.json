@@ -1086,6 +1086,15 @@
         "menu": {
           "label": "Menu"
         },
+        "show_menu": {
+          "label": "Show menu",
+        },
+        "show_menu_bar":{
+          "label": "Show menu bar",
+        },
+        "hover_menu_shema": {
+          "label": "Hover colors"
+        },
         "menu_type_desktop": {
           "label": "Menu type",
           "options__1": {
