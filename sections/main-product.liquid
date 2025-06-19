@@ -37,6 +37,66 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
+
+    .title-big {
+      font-size: 3rem;
+      line-height: 3.2rem;
+    }
+
+    .title-medium {
+      font-size: 2.5rem;
+      line-height: 2.7rem;
+
+    }
+
+    .title-small {
+      font-size: 2rem;
+      line-height: 2.2rem;
+    }
+
+    .custom-title {
+      text-transform: uppercase;
+      font-weight: 600;
+      color: rgb(var(--color-foreground));
+    }
+
+    .title-margin-top {
+      margin-top: 10px;
+    }
+
+    .custom-quantity-button {
+      background-color: rgb(var(--color-button)) !important;
+      color: rgb(var(--color-button-text)) !important;
+      border-radius: 50px;
+      width: 35px;
+      height: 35px;
+    }
+
+    .custom-quantity-input {
+      width: 35px !important;
+      height: 35px;
+      margin: 0 10px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    @media screen and (max-width: 750px) {
+      .title-big {
+      font-size: 2.5rem;
+      line-height: 2.7rem;
+    }
+
+    .title-medium {
+      font-size: 2rem;
+      line-height: 2.2rem;
+
+    }
+
+    .title-small {
+      font-size: 1.5rem;
+      line-height: 1.7rem;
+    }
+    }
   {%- endstyle -%}
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
@@ -98,11 +158,13 @@
                 </p>
               {%- when 'title' -%}
                 <div class="product__title" {{ block.shopify_attributes }}>
-                  <h1>{{ product.title | escape }}</h1>
+                  <div class="custom-title title-margin-top {% if block.settings.text_size == 'small' %}title-small{% elsif block.settings.text_size == 'medium' %}title-medium{% elsif block.settings.text_size == 'big' %}title-big{% endif %}">
+                    {{ product.title | escape }}
+                  </div>
                   <a href="{{ product.url }}" class="product__title">
-                    <h2 class="h1">
+                    <div class="custom-title title-margin-top {% if block.settings.text_size == 'small' %}title-small{% elsif block.settings.text_size == 'medium' %}title-medium{% elsif block.settings.text_size == 'big' %}title-big{% endif %}">
                       {{ product.title | escape }}
-                    </h2>
+                    </div>
                   </a>
                 </div>
               {%- when 'price' -%}
@@ -239,20 +301,9 @@
                     | item_count_for_variant: product.selected_or_first_available_variant.id
                   -%}
                   {% # theme-check-enable %}
-                  <label class="quantity__label form__label" for="Quantity-{{ section.id }}">
-                    {{ 'products.product.quantity.label' | t }}
-                    <span class="quantity__rules-cart{% if cart_qty == 0 %} hidden{% endif %}">
-                      {%- render 'loading-spinner' -%}
-                      <span
-                        >(
-                        {{- 'products.product.quantity.in_cart_html' | t: quantity: cart_qty -}}
-                        )</span
-                      >
-                    </span>
-                  </label>
                   <div class="price-per-item__container">
                     <quantity-input class="quantity" data-url="{{ product.url }}" data-section="{{ section.id }}">
-                      <button class="quantity__button" name="minus" type="button">
+                      <button class="quantity__button custom-quantity-button" name="minus" type="button">
                         <span class="visually-hidden">
                           {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
                         </span>
@@ -261,7 +312,7 @@
                         </span>
                       </button>
                       <input
-                        class="quantity__input"
+                        class="quantity__input custom-quantity-input"
                         type="number"
                         name="quantity"
                         id="Quantity-{{ section.id }}"
@@ -276,7 +327,7 @@
                         value="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
                         form="{{ product_form_id }}"
                       >
-                      <button class="quantity__button" name="plus" type="button">
+                      <button class="quantity__button custom-quantity-button" name="plus" type="button">
                         <span class="visually-hidden">
                           {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
                         </span>
@@ -356,7 +407,10 @@
                                 </dt>
                                 <dd>
                                   <span class="price-per-item--current">
-                                    {{- 'products.product.volume_pricing.price_at_each_html' | t: price: variant_price -}}
+                                    {{-
+                                      'products.product.volume_pricing.price_at_each_html'
+                                      | t: price: variant_price
+                                    -}}
                                   </span>
                                 </dd>
                               </dl>
@@ -574,7 +628,7 @@
                                   -%}
                                     <li>
                                       {%- if block.settings.enable_quick_add -%}
-                                        {% assign quick_add = 'standard' %}
+                                        {% assign quick_add = 'icon' %}
                                       {%- else -%}
                                         {% assign quick_add = 'none' %}
                                       {%- endif -%}
@@ -685,10 +739,10 @@
           <button
             id="ModalClose-{{ block.id }}"
             type="button"
-            class="product-popup-modal__toggle"
+            class="product-popup-modal__toggle basic-icon"
             aria-label="{{ 'accessibility.close' | t }}"
           >
-            {{- 'icon-close.svg' | inline_asset_content -}}
+            {{- 'fontawesome-close.svg' | inline_asset_content -}}
           </button>
           <div class="product-popup-modal__content-info">
             <h1 class="h2">{{ block.settings.page.title | escape }}</h1>
@@ -768,7 +822,29 @@
     {
       "type": "title",
       "name": "t:sections.main-product.blocks.title.name",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "text_size",
+          "options": [
+            {
+              "value": "small",
+              "label": "t:sections.main-product.settings.media_size.options__1.label"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.main-product.settings.media_size.options__2.label"
+            },
+            {
+              "value": "big",
+              "label": "t:sections.main-product.settings.media_size.options__3.label"
+            }
+          ],
+          "default": "medium",
+          "label": "t:sections.main-product.blocks.text.settings.text.label"
+        }
+      ]
     },
     {
       "type": "price",
@@ -1674,7 +1750,7 @@
         {
           "type": "header",
           "content": "t:sections.main-product.blocks.icon_with_text.settings.pairing_2.label"
-        },        
+        },
         {
           "type": "select",
           "id": "icon_2",
@@ -1874,7 +1950,7 @@
         {
           "type": "header",
           "content": "t:sections.main-product.blocks.icon_with_text.settings.pairing_3.label"
-        },        
+        },
         {
           "type": "select",
           "id": "icon_3",
@@ -2154,7 +2230,7 @@
           "label": "t:sections.main-product.settings.gallery_layout.options__4.label"
         }
       ],
-      "default": "stacked",
+      "default": "thumbnail_slider",
       "label": "t:sections.main-product.settings.gallery_layout.label"
     },
     {
@@ -2174,9 +2250,9 @@
           "label": "t:sections.main-product.settings.mobile_thumbnails.options__3.label"
         }
       ],
-      "default": "hide",
+      "default": "show",
       "label": "t:sections.main-product.settings.mobile_thumbnails.label"
-    },    
+    },
     {
       "type": "select",
       "id": "media_position",

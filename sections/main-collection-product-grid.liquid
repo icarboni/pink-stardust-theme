@@ -10,7 +10,7 @@
   {{ 'quick-add.css' | asset_url | stylesheet_tag }}
 {%- endunless -%}
 
-{%- if section.settings.quick_add == 'standard' -%}
+{%- if section.settings.quick_add == 'standard' or section.settings.quick_add == 'icon' -%}
   <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
@@ -175,7 +175,8 @@
                     lazy_load: lazy_load,
                     skip_styles: skip_card_product_styles,
                     quick_add: section.settings.quick_add,
-                    section_id: section.id
+                    section_id: section.id,
+                    show_product_title: section.settings.show_product_title
                   %}
                 </li>
                 {%- assign skip_card_product_styles = true -%}
@@ -327,7 +328,7 @@
     {
       "type": "select",
       "id": "quick_add",
-      "default": "none",
+      "default": "icon",
       "label": "t:sections.main-collection-product-grid.settings.quick_add.label",
       "options": [
         {
@@ -341,6 +342,10 @@
         {
           "value": "bulk",
           "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_3"
+        },
+        {
+          "value": "icon",
+          "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_4"
         }
       ]
     },
@@ -404,6 +409,12 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_title",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_product_title.label"
     }
   ]
 }

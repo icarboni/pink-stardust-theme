@@ -11,7 +11,10 @@
           }
         },
         "title": {
-          "type": "title"
+          "type": "title",
+          "settings": {
+            "text_size": "medium", 
+          }
         },
         "caption": {
           "type": "text",
@@ -102,10 +105,10 @@
       ],
       "settings": {
         "enable_sticky_info": true,
-        "gallery_layout": "stacked",
-        "media_size": "large",
+        "gallery_layout": "thumbnail_slider",
+        "media_size": "small",
         "constrain_to_viewport": true,
-        "mobile_thumbnails": "hide",
+        "mobile_thumbnails": "show",
         "hide_variants": true,
         "enable_video_looping": false,
         "padding_top": 36,

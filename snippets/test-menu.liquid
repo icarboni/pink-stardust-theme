@@ -15,17 +15,17 @@
       	gap: 1rem;
     }
 
-    .header__menu-bar-item-button {
+    .header__menu-bar-title-button {
       	display: inline-block;
       	font-weight: 800;
         text-transform: uppercase;
     }
 
-    .header__menu-bar-item-button:hover {
+    .header__menu-bar-title-button:hover {
       background-color: rgb(var(--color-shadow));
   }
 
-    .header__menu-bar-item {
+    .header__menu-bar-title {
       padding: 1.2rem;
       text-decoration: none;
       color: rgba(var(--color-foreground), 0.75);
@@ -33,26 +33,72 @@
       padding: 1.5rem 2rem;
     }
     
-    .header__menu-bar-item:hover {
+    .header__menu-bar-title:hover {
       color: rgb(var(--color-background));
     }
     
-    details[open] > .header__menu-bar-item .icon-caret {
+    details[open] > .header__menu-bar-title .icon-caret {
       transform: rotate(180deg);
+      color: rgb(var(--color-background));
+    }
+
+
+
+
+
+    .header__menu-bar-child-button {
+      color: rgba(var(--color-background), 0.75);
+      width: 100%;
+      display: inline-block;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .header__menu-bar-child-button:hover {
+      background-color: rgb(var(--color-background));
+    }
+
+    .header__menu-bar-child {
+      padding: 1.2rem;
+      text-decoration: none;
+      color: rgb(var(--color-background));
+      white-space: nowrap;
+      padding: 1.5rem 2rem;
     }
     
-    .header__active-menu-bar-item {
+    .header__menu-bar-child:hover {
+      color: rgb(var(--color-shadow));
+    }
+    
+    details[open] > .header__menu-bar-title {
+      color: rgb(var(--color-background));
+    }
+    
+    details[open]:hover > .header__menu-bar-title {
+      text-decoration-thickness: 0.2rem;
+    }
+    
+
+    
+    .header__active-menu-bar-title {
       color: rgb(var(--color-foreground));
     }
 
-    .list-menu {
+    .header__active-menu-bar-title:hover {
+      color: rgb(var(--color-background));
+    }
+
+    .header__active-menu-bar-child {
+      background-color: rgb(var(--color-background));
+      color: rgb(var(--color-foreground));
+    }
+
+    .list-menu-bar {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-    }
-
-    .header__menu-bar-item-sub-button {
-      width: 100%;
+      background-color: rgb(var(--color-shadow));
+      z-index: 10000 !important;
     }
   
     .menu-margin {
@@ -65,36 +111,31 @@
 <nav id="menu-bar" class="header__menu-bar color-{{ section.settings.menu_color_scheme }}">
     <ul class="menu-margin" role="list">
       {%- for link in section.settings.menu.links -%}
-        <li class="header__menu-bar-item-button">
+        <li class="header__menu-bar-title-button">
           {%- if link.links != blank -%}
             <header-menu>
               <details id="Details-HeaderMenu-{{ forloop.index }}">
                 <summary 
                   id="HeaderMenu-{{ link.handle }}"
-				          class="header__menu-bar-item list-menu__item link focus-inset"
+				          class="header__menu-bar-title list-menu__item link focus-inset {% if link.child_active %} header__active-menu-bar-title{% endif %}"
                 >
-                  <span
-                    {%- if link.child_active %}
-                      class="header__active-menu-bar-item"
-                    {% endif %}
-                  >
+                  <span>
                     {{- link.title | escape -}}
                   </span>
-                  {{- 'icon-caret.svg' | inline_asset_content -}}
                 </summary>
                 <ul
                   id="HeaderMenu-MenuList-{{ forloop.index }}"
-                  class="header__submenu list-menu list-menu--disclosure color-{{ section.settings.menu_color_scheme }} gradient caption-large motion-reduce global-settings-popup"
+                  class="header__submenu list-menu-bar list-menu list-menu--disclosure color-{{ section.settings.menu_color_scheme }} gradient caption-large motion-reduce global-settings-popup"
                   role="list"
                   tabindex="-1"
                 >
                   {%- for childlink in link.links -%}
-                    <li class="header__menu-bar-item-button header__menu-bar-item-sub-button">
+                    <li class="header__menu-bar-child-button">
                       {%- if childlink.links == blank -%}
                         <a 
                           id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
                           href="{{ childlink.url }}"
-                          class="header__menu-bar-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
+                          class="header__menu-bar-child list-menu__item link link--text focus-inset caption-large{% if childlink.current %} header__active-menu-bar-child{% endif %}"
                           {% if childlink.current %}
                             aria-current="page"
                           {% endif %}
@@ -105,21 +146,20 @@
                         <details id="Details-HeaderSubMenu-{{ link.handle }}-{{ childlink.handle }}">
                           <summary
                             id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                            class="header__menu-bar-item link link--text list-menu__item focus-inset caption-large"
+                            class="header__menu-bar-child link link--text focus-inset caption-large"
                           >
                             <span>{{ childlink.title | escape }}</span>
-                            {{- 'icon-caret.svg' | inline_asset_content -}}
                           </summary>
                           <ul
                             id="HeaderMenu-SubMenuList-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                            class="header__submenu list-menu motion-reduce"
+                            class="header__submenu list-menu-bar list-menu motion-reduce"
                           >
                             {%- for grandchildlink in childlink.links -%}
                               <li>
                                 <a
                                   id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
                                   href="{{ grandchildlink.url }}"
-                                  class="header__menu-bar-item list-menu__item link link--text focus-inset caption-large{% if grandchildlink.current %} list-menu__item--active{% endif %}"
+                                  class="header__menu-bar-child link link--text focus-inset caption-large{% if grandchildlink.current %} list-menu__item--active{% endif %}"
                                   {% if grandchildlink.current %}
                                     aria-current="page"
                                   {% endif %}
@@ -140,16 +180,9 @@
             <a
               id="HeaderMenu-{{ link.handle }}"
               href="{{ link.url }}"
-              class="header__menu-bar-item list-menu__item link link--text focus-inset"
-              {% if link.current %}
-                aria-current="page"
-              {% endif %}
+              class="header__menu-bar-title list-menu__item link link--text focus-inset {% if link.current %} header__active-menu-bar-title{% endif %}"
             >
-              <span
-                {%- if link.current %}
-                  class="header__active-menu-bar-item"
-                {% endif %}
-              >
+              <span>
                 {{- link.title | escape -}}
               </span>
             </a>

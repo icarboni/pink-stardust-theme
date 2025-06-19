@@ -38,8 +38,8 @@
                 onclick="this.closest('cart-drawer').close()"
                 aria-label="{{ 'accessibility.close' | t }}"
               >
-                <span class="svg-wrapper">
-                  {{- 'icon-close.svg' | inline_asset_content -}}
+                <span class="svg-wrapper-fontawesome basic-icon">
+                  {{- 'fontawesome-close.svg' | inline_asset_content -}}
                 </span>
               </button>
               <a href="{{ routes.all_products_collection_url }}" class="button">
@@ -69,8 +69,8 @@
           onclick="this.closest('cart-drawer').close()"
           aria-label="{{ 'accessibility.close' | t }}"
         >
-          <span class="svg-wrapper">
-            {{- 'icon-close.svg' | inline_asset_content -}}
+          <span class="svg-wrapper-fontawesome basic-icon">
+            {{- 'fontawesome-close.svg' | inline_asset_content -}}
           </span>
         </button>
       </div>
@@ -247,7 +247,10 @@
                             {%- endif -%}
 
                             {%- if item.variant.available and item.unit_price_measurement -%}
-                              {% render 'unit-price', price: item.unit_price, measurement: item.unit_price_measurement %}
+                              {% render 'unit-price',
+                                price: item.unit_price,
+                                measurement: item.unit_price_measurement
+                              %}
                             {%- endif -%}
                           </div>
                         </td>
@@ -392,8 +395,8 @@
                                   type="button"
                                   aria-label="{{ 'accessibility.close' | t }}"
                                 >
-                                  <span class="svg-wrapper">
-                                    {{- 'icon-close.svg' | inline_asset_content -}}
+                                  <span class="svg-wrapper-fontawesome basic-icon">
+                                    {{- 'fontawesome-close.svg' | inline_asset_content -}}
                                   </span>
                                 </button>
                                 {%- if item.variant.quantity_price_breaks.size > 0 -%}

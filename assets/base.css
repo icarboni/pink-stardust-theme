@@ -647,6 +647,37 @@ h3 .icon-arrow,
   width: 100%;
 }
 
+.svg-wrapper-fontawesome {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+}
+
+.svg-wrapper-fontawesome > svg {
+  height: 100%;
+  width: 100%;
+}
+
+.basic-icon {
+  fill: rgb(var(--color-foreground));
+}
+
+.basic-icon:hover {
+  fill: rgba(var(--color-foreground), 0.80);
+  transform: scale(1.10);
+}
+
+.rounded-button-icon {
+  margin-top: 2px;
+  fill: rgb(var(--color-button-text));
+}
+
+.quick-add-icon-button:hover .rounded-button-icon {
+  fill: rgb(var(--color-foreground));
+}
+
 /* base-details-summary */
 summary {
   cursor: pointer;
@@ -1885,7 +1916,6 @@ input[type='checkbox'] {
 
 .quantity:after {
   pointer-events: none;
-  content: '';
   position: absolute;
   top: var(--inputs-border-width);
   right: var(--inputs-border-width);

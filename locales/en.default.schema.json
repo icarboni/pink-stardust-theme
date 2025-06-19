@@ -85,6 +85,9 @@
         }
       }
     },
+    "show_product_title": {
+      "name": "Show product title"
+    },
     "badges": {
       "name": "Badges",
       "settings": {
