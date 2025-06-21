@@ -2,7 +2,7 @@
   --alpha-button-background: 1;
   --alpha-button-border: 1;
   --alpha-link: 0.85;
-  --alpha-badge-border: 0.1;
+  --alpha-badge-border: 0.8;
   --focused-base-outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
   --focused-base-outline-offset: 0.3rem;
   --focused-base-box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
@@ -2159,7 +2159,7 @@ input[type='checkbox'] {
 
 @media screen and (min-width: 990px) {
   .utility-bar__grid--3-col {
-    grid-template-columns: 3fr 4fr 3fr;
+    grid-template-columns: 2fr 6fr 2fr;
     grid-template-areas: 'social-icons announcements language-currency';
   }
 
@@ -2245,7 +2245,7 @@ input[type='checkbox'] {
   }
 
   .announcement-bar-slider {
-    width: 60%;
+    width: 70%;
   }
 
   .announcement-bar .slider-button {
@@ -2378,6 +2378,50 @@ input[type='checkbox'] {
 
 .header-wrapper--border-bottom {
   border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+}
+
+.cloud-shape {
+  position: relative; /* Required for absolute positioning */
+}
+
+.cloud-shape::after {
+  content: "";
+  position: absolute;
+  bottom: -30px; /* Half of height to overlap */
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: 
+    radial-gradient(30px circle at 25px -10px, rgb(var(--color-background)) 95%, transparent),
+    radial-gradient(25px circle at 70px -10px, rgb(var(--color-background)) 95%, transparent);
+  background-size: 88px 35px; /* Double the pattern width for seamless repeat */
+  background-repeat: repeat-x;
+  z-index: 1; /* Ensure it appears above header image */
+  pointer-events: none; /* Allows clicks to pass through */
+}
+
+@media screen and (max-width: 990px) {
+
+  .header-cloud-shape {
+    position: relative; /* Required for absolute positioning */
+  }
+  
+  .header-cloud-shape::after {
+    content: "";
+    position: absolute;
+    bottom: -30px; /* Half of height to overlap */
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: 
+    radial-gradient(30px circle at 25px -10px, rgb(var(--color-background)) 95%, transparent),
+    radial-gradient(25px circle at 70px -10px, rgb(var(--color-background)) 95%, transparent);
+    background-size: 88px 35px; /* Double the pattern width for seamless repeat */
+    background-repeat: repeat-x;
+    z-index: 1; /* Ensure it appears above header image */
+    pointer-events: none; /* Allows clicks to pass through */
+  }
+  
 }
 
 .header {
@@ -2959,6 +3003,8 @@ details-disclosure > details {
   border-color: rgba(var(--color-badge-border), var(--alpha-badge-border));
   color: rgb(var(--color-badge-foreground));
   word-break: break-word;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .gradient {

@@ -127,7 +127,8 @@
                   show_rating: section.settings.show_rating,
                   skip_styles: skip_card_product_styles,
                   section_id: section.id,
-                  quick_add: section.settings.quick_add
+                  quick_add: section.settings.quick_add,
+                  show_product_title: section.settings.show_product_title
                 %}
               </li>
               {%- assign skip_card_product_styles = true -%}
@@ -521,6 +522,12 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_title",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_product_title.label"
     }
   ],
   "presets": [

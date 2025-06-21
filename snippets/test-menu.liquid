@@ -13,6 +13,7 @@
       	align-items: center;
       	justify-content: center;
       	gap: 1rem;
+        z-index: 100;
     }
 
     .header__menu-bar-title-button {
@@ -99,6 +100,7 @@
       align-items: flex-start;
       background-color: rgb(var(--color-shadow));
       z-index: 10000 !important;
+      border-radius: 0px var(--media-radius) var(--media-radius) var(--media-radius) !important;
     }
   
     .menu-margin {
@@ -108,7 +110,7 @@
 
 </style>
 
-<nav id="menu-bar" class="header__menu-bar color-{{ section.settings.menu_color_scheme }}">
+<nav id="menu-bar" class="header__menu-bar color-{{ section.settings.menu_color_scheme }} {% if section.settings.cloud_shape %} cloud-shape {% endif %} %}">
     <ul class="menu-margin" role="list">
       {%- for link in section.settings.menu.links -%}
         <li class="header__menu-bar-title-button">

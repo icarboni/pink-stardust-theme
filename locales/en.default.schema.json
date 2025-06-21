@@ -448,15 +448,18 @@
         "auto_rotate": {
           "label": "Auto rotate announcements"
         },
+        "hide_arrows": {
+          "label": "Hide arrows"
+        },
         "change_slides_speed": {
           "label": "Change every"
         },
         "heading_utilities": {
-         "content": "Utilities"
+          "content": "Utilities"
         },
         "paragraph": {
           "content": "Appear only on large screens"
-        },                     
+        },
         "show_social": {
           "label": "Social media icons",
           "info": "[Manage social accounts](/editor?context=theme&category=social%20media)"
@@ -647,6 +650,15 @@
         },
         "swipe_on_mobile": {
           "label": "Carousel"
+        },
+        "title_position": {
+          "label": "Title position",
+          "options__1": {
+            "label": "Bottom"
+          },
+          "options__2": {
+            "label": "Badge"
+          }
         }
       },
       "blocks": {
@@ -3060,6 +3072,9 @@
         },
         "change_slides_speed": {
           "label": "Change slides every"
+        },
+        "show_controls": {
+          "label": "Show controls"
         },
         "mobile": {
           "content": "Mobile layout"

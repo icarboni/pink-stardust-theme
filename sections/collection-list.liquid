@@ -76,7 +76,8 @@
               card_collection: block.settings.collection,
               media_aspect_ratio: section.settings.image_ratio,
               columns: columns,
-              placeholder_image: placeholder_image
+              placeholder_image: placeholder_image,
+              title_position: section.settings.title_position
             %}
           </li>
         {%- endfor -%}
@@ -273,6 +274,22 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "select",
+      "id": "title_position",
+      "options": [
+        {
+          "value": "bottom",
+          "label": "t:sections.collection-list.settings.title_position.options__1.label"
+        },
+        {
+          "value": "badge",
+          "label": "t:sections.collection-list.settings.title_position.options__2.label"
+        }
+      ],
+      "default": "badge",
+      "label": "t:sections.collection-list.settings.title_position.label"
     }
   ],
   "blocks": [

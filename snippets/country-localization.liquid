@@ -35,7 +35,6 @@
   >
     <span>
       {{- localization.country.name }} |
-      {{ localization.country.currency.iso_code }}
       {{ localization.country.currency.symbol -}}
     </span>
     {{ 'icon-caret.svg' | inline_asset_content }}
@@ -75,11 +74,13 @@
         </div>
       {% endif %}
       <button
-        class="country-selector__close-button button--small link basic-icon"
+        class="country-selector__close-button button--small link basic-icon basic-icon"
         type="button"
         aria-label="{{ 'accessibility.close' | t }}"
       >
+        <span class="svg-wrapper-fontawesome basic-icon">
         {{- 'fontawesome-close.svg' | inline_asset_content -}}
+        </span>
       </button>
     </div>
     <div id="sr-country-search-results" class="visually-hidden" aria-live="polite"></div>

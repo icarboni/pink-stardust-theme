@@ -641,7 +641,8 @@
                                         quick_add: quick_add,
                                         section_id: section.id,
                                         horizontal_class: true,
-                                        horizontal_quick_add: true
+                                        horizontal_quick_add: true,
+                                        show_product_title: section.settings.show_product_title
                                       %}
                                     </li>
                                     {%- assign skip_card_product_styles = true -%}
@@ -2324,6 +2325,12 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_title",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_product_title.label"
     }
   ]
 }

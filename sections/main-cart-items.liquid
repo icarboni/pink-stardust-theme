@@ -86,12 +86,12 @@
                         <a href="{{ item.url }}" class="cart-item__link" aria-hidden="true" tabindex="-1"> </a>
                         <div class="cart-item__image-container gradient global-media-settings">
                           <img
-                            src="{{ item.image | image_url: width: 300 }}"
+                            src="{{ item.image | image_url: width: 300, height: 300, crop: 'center' }}"
                             class="cart-item__image"
                             alt="{{ item.image.alt | escape }}"
                             loading="lazy"
                             width="150"
-                            height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}"
+                            height="150"
                           >
                         </div>
                       {% endif %}

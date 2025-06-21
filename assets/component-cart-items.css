@@ -79,6 +79,8 @@ cart-items .title-wrapper-with-link {
 .cart-item__name {
   text-decoration: none;
   display: block;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .cart-item__name:hover {
