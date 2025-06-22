@@ -1417,9 +1417,13 @@
           {
             "value": "notification",
             "label": "t:settings_schema.cart.settings.cart_type.notification.label"
+          },
+          {
+            "value": "notification_drawer",
+            "label": "t:settings_schema.cart.settings.cart_type.notification.label"
           }
         ],
-        "default": "notification",
+        "default": "notification_drawer",
         "label": "t:settings_schema.cart.settings.cart_type.label"
       },
       {

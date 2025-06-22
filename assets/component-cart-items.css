@@ -39,6 +39,8 @@ cart-items .title-wrapper-with-link {
 .cart-item__image {
   height: auto;
   max-width: calc(10rem / var(--font-body-scale));
+  border-radius: var(--media-radius);
+
 }
 
 @media screen and (min-width: 750px) {

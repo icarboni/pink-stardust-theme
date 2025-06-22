@@ -120,4 +120,6 @@
 .cart-notification-product__name {
   margin-bottom: 0.5rem;
   margin-top: 0;
+  font-weight: 600;
+  text-decoration: uppercase;
 }
