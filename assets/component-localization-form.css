@@ -434,6 +434,12 @@
   padding: 1rem 3.6rem 1rem 0rem;
 }
 
+@media screen and (min-width: 750px) and (max-width: 990px) {
+  .menu-drawer__localization {
+    padding-left: 3rem;
+  }
+}
+
 .menu-drawer__localization .localization-form {
   padding: 0;
 }

@@ -5,6 +5,12 @@
   {% render 'header-drawer' %}
 {% endcomment %}
 
+{% style %}
+ .right-margin-account {
+  margin-right: 1rem;
+ }
+{% endstyle %}
+
 <header-drawer data-breakpoint="{% if section.settings.menu_type_desktop == 'drawer' %}desktop{% else %}tablet{% endif %}">
   <details id="Details-menu-drawer-container" class="menu-drawer-container">
     <summary
@@ -143,7 +149,7 @@
                 rel="nofollow"
               >
                 {%- if section.settings.enable_customer_avatar -%}
-                  <account-icon>
+                  <account-icon class="right-margin-account">
                     {%- if customer and customer.has_avatar? -%}
                       {{ customer | avatar }}
                     {%- else -%}

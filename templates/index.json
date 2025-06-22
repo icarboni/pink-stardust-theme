@@ -128,7 +128,7 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured products",
+        "title": "Featured product",
         "heading_size": "h2",
         "collection": "all",
         "products_to_show": 8,
@@ -179,15 +179,72 @@
         "padding_bottom": 36
       }
     },
-    "video": {
-      "type": "video",
+    "bookish_mail": {
+      "type": "bookish-mail",
+      "blocks": {
+        "text_3cq9MK": {
+          "type": "text",
+          "settings": {
+            "text": "BOOKISH MAIL",
+            "text_style": "uppercase"
+          }
+        },
+        "title_fyKwMU": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h2"
+          }
+        },
+        "price_ewXwfz": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_87qhiL": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_C3EWXh": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_QAKWm3": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_BbPDCg": {
+          "type": "share",
+          "settings": {
+            "share_label": "Compartir"
+          }
+        }
+      },
+      "block_order": [
+        "text_3cq9MK",
+        "title_fyKwMU",
+        "price_ewXwfz",
+        "variant_picker_87qhiL",
+        "quantity_selector_C3EWXh",
+        "buy_buttons_QAKWm3",
+        "share_BbPDCg"
+      ],
+      "name": "t:sections.featured-product.presets.name",
       "settings": {
-        "heading": "",
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-        "heading_size": "h1",
-        "description": "",
-        "full_width": false,
-        "color_scheme": "scheme-1",
+        "product": "",
+        "color_scheme": "",
+        "secondary_background": false,
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -245,10 +302,10 @@
   "order": [
     "slideshow",
     "rich_text",
+    "bookish_mail",
     "collection_list",
     "featured_collection",
     "collage",
-    "video",
     "multicolumn"
   ]
 }

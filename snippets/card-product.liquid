@@ -75,6 +75,7 @@
     .sold-out-icon-button { 
       background-color: rgba(var(--color-button), 0.40);
       color: rgb(var(--color-button-text-disabled));
+      cursor: not-allowed;
     }
   {% endstyle %}
 
@@ -160,7 +161,7 @@
                   class="full-unstyled-link"
                   aria-labelledby="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }} NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
                 >
-                  {{ card_product.title | escape }}
+                  {{ card_product.title | escape }} a
                 </a>
               </h3>
             </div>
@@ -200,7 +201,7 @@
                 class="full-unstyled-link"
                 aria-labelledby="CardLink-{{ section_id }}-{{ card_product.id }} Badge-{{ section_id }}-{{ card_product.id }}"
               >
-                {{ card_product.title | escape }}
+                {{ card_product.title | escape }} b
               </a>
             </h3>
           {%- endif -%}
@@ -279,7 +280,7 @@
                     <quick-add-modal id="QuickAdd-{{ card_product.id }}" class="quick-add-modal">
                       <div
                         role="dialog"
-                        aria-label="{{ 'products.product.choose_product_options' | t: product_name: card_product.title | escape }}"
+                        aria-label="{{ 'products.product.choose_product_options' | t: product_name: card_product.title | escape }} c"
                         aria-modal="true"
                         class="quick-add-modal__content global-settings-popup"
                         tabindex="-1"
@@ -317,26 +318,24 @@
                           id="{{ product_form_id }}-submit"
                           type="submit"
                           name="add"
-                          class="round-button {% if card_product.selected_or_first_available_variant.available == false %} sold-out-icon-button {% else %}quick-add-icon-button {% endif %%}"
+                          class="round-button {% if card_product.selected_or_first_available_variant.available == false %} sold-out-icon-button {% else %}quick-add-icon-button {% endif %}"
                           aria-haspopup="dialog"
                           aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
                           aria-live="polite"
                           data-sold-out-message="true"
-                          {% if card_product.selected_or_first_available_variant.available == true %}
+                          {% if card_product.selected_or_first_available_variant.available == false %}
                             disabled
                           {% endif %}
                         >
-                          <span class="svg-wrapper-fontawesome rounded-button-icon"n>
-                              {{ 'fontawesome-add-cart.svg' | inline_asset_content }}
-                          </span>
-                          <span class="sold-out-message hidden">
-                            {{ 'products.product.sold_out' | t }}
-                          </span>
+                            <span class="svg-wrapper-fontawesome rounded-button-icon"n>
+                                {{ 'fontawesome-add-cart.svg' | inline_asset_content }}
+                            </span>
+                          
                           <span class="hidden">{%- render 'loading-spinner' -%}</span>
                         </button>
                       {%- endform -%}
                     </product-form>
-                  {%- endif -%}
+                  {% endif %}
                 </div>
               </div>
             {% else %}
@@ -457,7 +456,7 @@
               <quick-add-modal id="QuickAdd-{{ card_product.id }}" class="quick-add-modal">
                 <div
                   role="dialog"
-                  aria-label="{{ 'products.product.choose_product_options' | t: product_name: card_product.title | escape }}"
+                  aria-label="{{ 'products.product.choose_product_options' | t: product_name: card_product.title | escape }} d"
                   aria-modal="true"
                   class="quick-add-modal__content global-settings-popup"
                   tabindex="-1"
@@ -584,7 +583,7 @@
               >
                 <div
                   role="dialog"
-                  aria-label="{{ 'products.product.choose_product_options' | t: product_name: card_product.title | escape }}"
+                  aria-label="{{ 'products.product.choose_product_options' | t: product_name: card_product.title | escape }} e"
                   aria-modal="true"
                   class="quick-add-modal__content quick-add-modal__content--bulk global-settings-popup"
                   tabindex="-1"
@@ -647,7 +646,7 @@
                       </div>
                       <div class="quick-add-modal__content-info--bulk-details large-up-hide">
                         <a href="{{ card_product.url }}" class="full-unstyled-link">
-                          <h3>{{ card_product.title | escape }}</h3>
+                          <h3>{{ card_product.title | escape }} f</h3>
                         </a>
                         {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
                         {%- if card_product.quantity_price_breaks_configured? -%}
@@ -661,7 +660,7 @@
                       <div class="quick-add-modal__content-info--bulk-details small-hide medium-hide">
                         <a href="{{ card_product.url }}" class="full-unstyled-link">
                           <h3 class="h2">
-                            {{ card_product.title | escape }}
+                            {{ card_product.title | escape }} g
                           </h3>
                         </a>
                         {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
