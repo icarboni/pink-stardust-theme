@@ -16,29 +16,24 @@
 
     .header__menu-bar-title-button {
       	display: inline-block;
-      	font-weight: 800;
-        text-transform: uppercase;
     }
 
-    .header__menu-bar-title-button:hover {
-      background-color: rgb(var(--color-shadow));
+    .header__menu-bar-title:hover {
+      color: rgba(var(--color-foreground), 1);
+      font-weight: 600;
+
   }
 
     .header__menu-bar-title {
       padding: 1.2rem;
-      text-decoration: none;
       color: rgba(var(--color-foreground), 0.75);
       white-space: nowrap;
-      padding: 1.5rem 2rem;
-    }
-    
-    .header__menu-bar-title:hover {
-      color: rgb(var(--color-background));
+      padding: 1rem 2rem;
     }
     
     details[open] > .header__menu-bar-title .icon-caret {
       transform: rotate(180deg);
-      color: rgb(var(--color-background));
+      color: rgb(var(--color-shadow));
     }
 
 
@@ -49,28 +44,27 @@
       color: rgba(var(--color-background), 0.75);
       width: 100%;
       display: inline-block;
-      font-weight: 800;
-      text-transform: uppercase;
     }
 
     .header__menu-bar-child-button:hover {
       background-color: rgb(var(--color-background));
+      font-weight: 600;
     }
 
     .header__menu-bar-child {
       padding: 1.2rem;
       text-decoration: none;
-      color: rgb(var(--color-background));
       white-space: nowrap;
       padding: 1.5rem 2rem;
     }
     
     .header__menu-bar-child:hover {
       color: rgb(var(--color-shadow));
+      text-decoration: underline;
     }
     
     details[open] > .header__menu-bar-title {
-      color: rgb(var(--color-background));
+      text-decoration: underline;
     }
     
     details[open]:hover > .header__menu-bar-title {
@@ -84,21 +78,24 @@
     }
 
     .header__active-menu-bar-title:hover {
-      color: rgb(var(--color-background));
+      color: rgb(var(--color-shadow));
+      font-weight: 600;
     }
 
     .header__active-menu-bar-child {
       background-color: rgb(var(--color-background));
-      color: rgb(var(--color-foreground));
+      color: rgb(var(--color-shadow));
     }
 
     .list-menu-bar {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      background-color: rgb(var(--color-shadow));
+      background-color: rgb(var(--color-background));
       z-index: 10 !important;
-      border-radius: 0px var(--media-radius) var(--media-radius) var(--media-radius) !important;
+      border-radius: var(--media-radius) !important;
+      width: 230px !important;
+      border-color: rgba(var(--color-button), 0.5) !important;
     }
   
     .menu-margin {
@@ -111,7 +108,7 @@
 
 
 
-<nav id="menu-bar" class="header__menu-bar color-{{ section.settings.menu_color_scheme }} {% if section.settings.cloud_shape %} cloud-shape {% endif %} %}">
+<nav id="menu-bar" class="shopify-section-header-sticky header__menu-bar color-{{ section.settings.menu_color_scheme }} {% if section.settings.cloud_shape %} cloud-shape {% endif %} %}">
     <ul class="menu-margin" role="list">
       {%- for link in section.settings.menu.links -%}
         <li class="header__menu-bar-title-button">
@@ -122,9 +119,14 @@
                   id="HeaderMenu-{{ link.handle }}"
 				          class="header__menu-bar-title list-menu__item link focus-inset {% if link.child_active %} header__active-menu-bar-title{% endif %}"
                 >
-                  <span>
+                  <span
+                    {%- if link.child_active %}
+                      class="header__active-menu-item"
+                    {% endif %}
+                  >
                     {{- link.title | escape -}}
                   </span>
+                  {{- 'icon-caret.svg' | inline_asset_content -}}
                 </summary>
                 <ul
                   id="HeaderMenu-MenuList-{{ forloop.index }}"
@@ -152,6 +154,14 @@
                             class="header__menu-bar-child link link--text focus-inset caption-large"
                           >
                             <span>{{ childlink.title | escape }}</span>
+                            <span
+                              {%- if link.child_active %}
+                                class="header__active-menu-item"
+                              {% endif %}
+                            >
+                              {{- link.title | escape -}}
+                            </span>
+                            {{- 'icon-caret.svg' | inline_asset_content -}}
                           </summary>
                           <ul
                             id="HeaderMenu-SubMenuList-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"

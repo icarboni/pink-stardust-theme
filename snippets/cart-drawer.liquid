@@ -17,6 +17,82 @@
   }
 </style>
 
+{% style %}
+.stepper {
+  width: 100%;
+  margin: 2rem 0;
+}
+.stepper__list {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.stepper__step {
+  flex: 1 1 0;
+  text-align: center;
+  position: relative;
+  color: rgb(var(--color-button));
+}
+.stepper__step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 1.25rem;
+  right: -50%;
+  width: 100%;
+  height: 4px;
+  background: rgb(var(--color-button));
+  z-index: 0;
+}
+.stepper__circle {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  line-height: 2.5rem;
+  border-radius: 50%;
+  background: rgb(var(--color-background));
+  border: 2px solid rgb(var(--color-button));
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  z-index: 1;
+  position: relative;
+}
+.stepper__label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+.stepper__desc {
+  display: flex;
+  justify-content: center;
+  font-size: 0.95em;
+  color: rgb(var(--color-button));
+}
+.stepper__step--active .stepper__circle,
+.stepper__step--complete .stepper__circle {
+  border-color: rgb(var(--color-button));
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-button));
+}
+.stepper__step--complete .stepper__circle {
+  background: rgb(var(--color-button));
+  color: white;
+}
+.stepper__step--active .stepper__label,
+.stepper__step--complete .stepper__label {
+  color: rgb(var(--color-button));
+  background: rgb(var(--color-background));
+  border-color: rgb(var(--color-button));
+}
+
+.all_unlocked {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+{% endstyle %}
+
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
   <div id="CartDrawer" class="cart-drawer">
     <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
@@ -74,6 +150,72 @@
           </span>
         </button>
       </div>
+      {% if settings.widget_cart_enabled %}
+        {% liquid
+          assign cart_total = cart.total_price | divided_by: 100
+          assign free_gift_min = settings.extra_free_gift_min
+          assign free_shipping_min = settings.free_shipping_min
+
+          assign step_1_active = false
+          assign step_2_active = false
+          assign step_3_active = false
+
+          assign step_1_complete = false
+          assign step_2_complete = false
+        
+          if cart_total >= free_gift_min
+            assign step_1_complete = true
+          endif
+
+          if cart_total >= free_shipping_min
+            assign step_2_complete = true
+          endif
+        
+          if cart_total >= 0 and cart_total < free_gift_min 
+            assign step_1_active = true
+          endif
+          if cart_total >= free_gift_min and cart_total < free_shipping_min
+            assign step_2_active = true
+          endif
+          if cart_total >= free_shipping_min
+            assign step_3_active = true
+          endif
+        %}
+        <div class="rewards" >
+          {% if step_1_active %}
+            <span class="stepper__desc">
+              {{ free_gift_min | minus: cart_total | ceil }}{{ cart.currency.symbol }} {{ 'general.cart.to_unlock_extra_gift' | t  }}!
+            </span>
+          {% elsif step_2_active %}
+            <span class="stepper__desc">
+              {{ free_shipping_min | minus: cart_total | ceil }}{{ cart.currency.symbol }} {{ 'general.cart.to_unlock_free_shipping' | t }}!
+            </span>
+          {% elsif step_3_active %}
+            <span class="stepper__desc all_unlocked">
+              {{'general.cart.all_rewards_unlocked' | t }}!
+            </span>
+          {% endif %}
+        </div>
+        <nav class="stepper" aria-label="Cart progress">
+          <ol class="stepper__list">
+            <li class="stepper__step{% if cart_total == 0 %} stepper__step--active{% endif %}{% if cart_total > 0 %} stepper__step--complete{% endif %}">
+              <span class="stepper__circle" aria-hidden="true">1</span>
+            </li>
+            <li class="stepper__step{% if step_1_active %} stepper__step--active{% endif %}{% if step_1_complete %} stepper__step--complete{% endif %}">
+              <span class="stepper__circle" aria-hidden="true">2</span>
+              <span class="stepper__label">
+                {{ 'general.cart.extra_gift' | t }}
+              </span>
+            </li>
+            <li class="stepper__step{% if step_2_active %} stepper__step--active{% endif %}{% if step_2_complete %} stepper__step--complete{% endif %}">
+              <span class="stepper__circle" aria-hidden="true">3</span>
+              <span class="stepper__label">
+                {{ 'general.cart.free_shipping' | t }}
+              </span>
+            </li>
+          </ol>
+        </nav>
+      {% endif %}
       <cart-drawer-items
         {% if cart == empty %}
           class=" is-empty"

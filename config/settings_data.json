@@ -31,7 +31,7 @@
             "background": "#fae0e8",
             "background_gradient": "",
             "text": "#e4698a",
-            "button": "#fae0e8",
+            "button": "#fff8fa",
             "button_label": "#e4698a",
             "secondary_button_label": "#e4698a",
             "shadow": "#e4698a"
@@ -147,6 +147,9 @@
       "cart_type": "notification_drawer",
       "show_vendor": false,
       "show_cart_note": true,
+      "widget_cart_enabled": true,
+      "free_shipping_min": 25,
+      "extra_free_gift_min": 15,
       "cart_drawer_collection": "",
       "sections": {
         "main-password-header": {

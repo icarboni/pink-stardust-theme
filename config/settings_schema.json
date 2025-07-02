@@ -1453,6 +1453,32 @@
         "id": "cart_color_scheme",
         "label": "t:sections.all.colors.label",
         "default": "scheme-1"
+      },
+      {
+        "type": "checkbox",
+        "id": "widget_cart_enabled",
+        "label": "t:settings_schema.cart.settings.widget_cart_enabled.label",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "free_shipping_min",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "eur",
+        "label": "t:settings_schema.cart.settings.free_shipping_min.label",
+        "default": 25
+      },
+      {
+        "type": "range",
+        "id": "extra_free_gift_min",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "eur",
+        "label": "t:settings_schema.cart.settings.extra_free_gift_min.label",
+        "default": 15
       }
     ]
   }

@@ -42,7 +42,12 @@
     "cart": {
       "view": "View cart ({{ count }})",
       "view_empty_cart": "View cart",
-      "item_added": "Item added to your cart"
+      "item_added": "Item added to your cart",
+      "to_unlock_free_shipping": "to unlock free shipping",
+      "to_unlock_extra_gift": "to unlock an extra gift",
+      "free_shipping": "Free shipping",
+      "extra_gift": "Extra gift",
+      "all_rewards_unlocked": "All rewards unlocked"
     },
     "share": {
       "close": "Close share",

@@ -32,7 +32,7 @@
           id="SectionHeading-{{ section.id }}"
           class="collection-list-title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         >
-          {{ section.settings.title }}
+          <span class="h2">{{ section.settings.title }}</span>
         </h2>
 
         {%- if section.settings.show_view_all and show_mobile_slider -%}
@@ -149,6 +149,21 @@
       "id": "title",
       "default": "t:sections.collection-list.settings.title.default",
       "label": "t:sections.collection-list.settings.title.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "t:sections.image-with-text.settings.image.label"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 10,
+      "max": 500,
+      "step": 10,
+      "default": 300,
+      "unit": "px",
+      "label": "t:settings_schema.logo.settings.logo_width.label"
     },
     {
       "type": "select",

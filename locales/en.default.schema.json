@@ -339,6 +339,15 @@
             "label": "Collection",
             "info": "Shown when cart drawer is empty"
           }
+        },
+        "widget_cart_enabled": {
+          "label": "Cart widget"
+        },
+        "free_shipping_min": {
+          "label": "Minimum free shipping amount",
+        },
+        "extra_free_gift_amount": {
+          "label": "Minimum amount for extra free gift",
         }
       }
     },
@@ -673,6 +682,12 @@
       },
       "presets": {
         "name": "Collection list"
+      }
+    },
+    "title-image": {
+      "name": "Title image",
+      "presets": {
+        "name": "Title image"
       }
     },
     "contact-form": {
@@ -1067,6 +1082,9 @@
         },
         "margin_top": {
           "label": "Top margin"
+        },
+        "margin_bottom": {
+          "label": "Bottom margin"
         },
         "header__9": {
           "content": "Utilities"

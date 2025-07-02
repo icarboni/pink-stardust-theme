@@ -125,13 +125,13 @@
 .disclosure__list-wrapper {
   border-width: var(--popup-border-width);
   border-style: solid;
-  border-color: rgba(var(--color-foreground), var(--popup-border-opacity));
+  border-color: rgba(var(--color-foreground), 1);
   overflow: hidden;
   position: absolute;
   bottom: 100%;
   transform: translateY(-1rem);
   z-index: 2;
-  background-color: rgb(var(--color-background));
+  background-color: rgb(var(--color-button));
   border-radius: var(--popup-corner-radius);
   box-shadow: var(--popup-shadow-horizontal-offset) var(--popup-shadow-vertical-offset) var(--popup-shadow-blur-radius)
     rgba(var(--color-shadow), var(--popup-shadow-opacity));

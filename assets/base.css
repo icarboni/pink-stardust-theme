@@ -883,6 +883,8 @@ summary::-webkit-details-marker {
 
 .title-wrapper--no-top-margin {
   margin-top: 0;
+  justify-content: center;
+  display: flex;
 }
 
 .title-wrapper--no-top-margin > .title {
@@ -2374,10 +2376,6 @@ input[type='checkbox'] {
   display: block;
   position: relative;
   background-color: rgb(var(--color-background));
-}
-
-.header-wrapper--border-bottom {
-  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
 }
 
 .cloud-shape {
