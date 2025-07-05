@@ -124,7 +124,7 @@
     "cart_drawer_collection": "",
     "cart_color_scheme": "scheme-57457d61-026b-465f-a46d-60cb2fa19d8c",
     "widget_cart_enabled": true,
-    "free_shipping_min": 25,
+    "free_shipping_min": 30,
     "extra_free_gift_min": 15,
     "sections": {
       "main-password-header": {

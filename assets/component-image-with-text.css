@@ -328,11 +328,15 @@
   box-shadow: var(--text-boxes-shadow-horizontal-offset) var(--text-boxes-shadow-vertical-offset)
     var(--text-boxes-shadow-blur-radius) rgba(var(--color-shadow), var(--text-boxes-shadow-opacity));
   word-break: break-word;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 @media screen and (min-width: 990px) {
   .image-with-text__content {
-    padding: 6rem 7rem 7rem;
+    
   }
 }
 
@@ -359,9 +363,7 @@
   margin-top: 2rem;
 }
 
-.image-with-text__content .image-with-text__text + .button {
-  margin-top: 3rem;
-}
+
 
 .image-with-text__heading {
   margin-bottom: 0;

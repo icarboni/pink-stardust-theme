@@ -15,7 +15,6 @@
         "slide_dpf6YB": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/holo.png",
             "image_overlay_opacity": 0,
             "heading": "",
             "heading_size": "h2",
@@ -62,132 +61,11 @@
         "accessibility_info": "Presentación de diapositivas sobre tu marca"
       }
     },
-    "title_image_xVyLFY": {
-      "type": "title-image",
-      "name": "t:sections.title-image.presets.name",
-      "settings": {
-        "logo": "shopify://shop_images/bookish_mail_web.png",
-        "logo_width": 300,
-        "margin_top": 56,
-        "margin_bottom": 12,
-        "color_scheme": "scheme-57457d61-026b-465f-a46d-60cb2fa19d8c"
-      }
-    },
-    "image_with_text_F6hzRP": {
-      "type": "image-with-text",
-      "blocks": {
-        "heading_9CP49a": {
-          "type": "heading",
-          "settings": {
-            "heading": "€ 8,99/mes",
-            "heading_size": "h2"
-          }
-        },
-        "text_HzhPxW": {
-          "type": "text",
-          "settings": {
-            "text": "<h4>Cada mes nuevos productos literarios directamente en tu buzon!</h4>",
-            "text_style": "body"
-          }
-        },
-        "button_JWym3a": {
-          "type": "button",
-          "settings": {
-            "button_label": "Descubre más",
-            "button_link": "shopify://products/suscripcion-mensual-de-marcapaginas-y-pegatinas",
-            "button_style_secondary": false
-          }
-        }
-      },
-      "block_order": ["heading_9CP49a", "text_HzhPxW", "button_JWym3a"],
-      "name": "t:sections.image-with-text.presets.name",
-      "settings": {
-        "image": "shopify://shop_images/bookishmail.png",
-        "height": "small",
-        "desktop_image_width": "medium",
-        "layout": "image_first",
-        "image_behavior": "none",
-        "content_layout": "overlap",
-        "desktop_content_position": "top",
-        "desktop_content_alignment": "left",
-        "mobile_content_alignment": "center",
-        "section_color_scheme": "scheme-57457d61-026b-465f-a46d-60cb2fa19d8c",
-        "color_scheme": "scheme-3",
-        "padding_top": 16,
-        "padding_bottom": 0
-      }
-    },
-    "title_image_UJTTVz": {
-      "type": "title-image",
-      "disabled": true,
-      "name": "t:sections.title-image.presets.name",
-      "settings": {
-        "logo": "shopify://shop_images/collections_web.png",
-        "logo_width": 300,
-        "margin_top": 20,
-        "margin_bottom": 12,
-        "color_scheme": "scheme-57457d61-026b-465f-a46d-60cb2fa19d8c"
-      }
-    },
-    "multicolumn_7DaJeL": {
-      "type": "multicolumn",
-      "blocks": {
-        "column_YNGbYg": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/just_a_girl_small_213ee6a0-d92c-4f05-ba19-ffca8ec8194c.png",
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_WMgGee": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/bookishmail.png",
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_NWKAmL": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/IMG_1468.jpg",
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": ["column_YNGbYg", "column_WMgGee", "column_NWKAmL"],
-      "disabled": true,
-      "name": "t:sections.multicolumn.presets.name",
-      "settings": {
-        "title": "",
-        "heading_size": "h2",
-        "image_width": "full",
-        "image_ratio": "square",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "primary",
-        "color_scheme": "scheme-57457d61-026b-465f-a46d-60cb2fa19d8c",
-        "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "padding_top": 20,
-        "padding_bottom": 28
-      }
-    },
     "title_image_jmA478": {
       "type": "title-image",
-      "name": "t:sections.title-image.presets.name",
+      "name": "Products title",
       "settings": {
-        "logo": "shopify://shop_images/collections_web.png",
+        "logo": "shopify://shop_images/products.png",
         "logo_width": 300,
         "margin_top": 20,
         "margin_bottom": 12,
@@ -235,6 +113,7 @@
         "featured_collection_bdaBTx",
         "featured_collection_wEXiaN"
       ],
+      "name": "Products",
       "settings": {
         "title": "",
         "logo_width": 300,
@@ -250,11 +129,74 @@
         "title_position": "pill"
       }
     },
+    "title_image_xVyLFY": {
+      "type": "title-image",
+      "name": "Bookish mail title",
+      "settings": {
+        "logo": "shopify://shop_images/bookish_mail_web.png",
+        "logo_width": 300,
+        "margin_top": 56,
+        "margin_bottom": 12,
+        "color_scheme": "scheme-3"
+      }
+    },
+    "image_with_text_F6hzRP": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_9CP49a": {
+          "type": "heading",
+          "settings": {
+            "heading": "€ 8,99/mes",
+            "heading_size": "h2"
+          }
+        },
+        "caption_PapjyM": {
+          "type": "caption",
+          "settings": {
+            "caption": "Gastos de envío incluidos",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "small"
+          }
+        },
+        "text_HzhPxW": {
+          "type": "text",
+          "settings": {
+            "text": "<h3>Cada mes nuevos productos literarios directamente en tu buzon!</h3>",
+            "text_style": "body"
+          }
+        },
+        "button_JWym3a": {
+          "type": "button",
+          "settings": {
+            "button_label": "Descubre más",
+            "button_link": "shopify://products/suscripcion-mensual-de-marcapaginas-y-pegatinas",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": ["heading_9CP49a", "caption_PapjyM", "text_HzhPxW", "button_JWym3a"],
+      "name": "Bookish mail",
+      "settings": {
+        "image": "shopify://shop_images/3_34624482-d61a-471c-8e26-903b9e509ddc.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "scheme-3",
+        "color_scheme": "scheme-3",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
     "title_image_QVPjGn": {
       "type": "title-image",
-      "name": "t:sections.title-image.presets.name",
+      "name": "New arrivals title",
       "settings": {
-        "logo": "shopify://shop_images/collections_web.png",
+        "logo": "shopify://shop_images/new_arrivals.png",
         "logo_width": 300,
         "margin_top": 20,
         "margin_bottom": 12,
@@ -263,6 +205,7 @@
     },
     "featured_collection": {
       "type": "featured-collection",
+      "name": "New arrivals",
       "settings": {
         "collection": "marcapaginas-acrilico",
         "products_to_show": 8,
@@ -288,6 +231,56 @@
         "padding_top": 8,
         "padding_bottom": 0,
         "show_product_title": false
+      }
+    },
+    "title_image_e33zMC": {
+      "type": "title-image",
+      "name": "Collections",
+      "settings": {
+        "logo": "shopify://shop_images/collections_web.png",
+        "logo_width": 300,
+        "margin_top": 20,
+        "margin_bottom": 16,
+        "color_scheme": "scheme-57457d61-026b-465f-a46d-60cb2fa19d8c"
+      }
+    },
+    "collection_list_qKQmyy": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_UxngPF": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured_collection_V3jwiN": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured_collection_PMXkfn": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": ["featured_collection_UxngPF", "featured_collection_V3jwiN", "featured_collection_PMXkfn"],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "",
+        "logo_width": 300,
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 5,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "title_position": "badge"
       }
     },
     "newsletter_rYCR6X": {
@@ -317,14 +310,14 @@
   },
   "order": [
     "slideshow",
-    "title_image_xVyLFY",
-    "image_with_text_F6hzRP",
-    "title_image_UJTTVz",
-    "multicolumn_7DaJeL",
     "title_image_jmA478",
     "collection_list",
+    "title_image_xVyLFY",
+    "image_with_text_F6hzRP",
     "title_image_QVPjGn",
     "featured_collection",
+    "title_image_e33zMC",
+    "collection_list_qKQmyy",
     "newsletter_rYCR6X"
   ]
 }

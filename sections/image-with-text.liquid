@@ -12,6 +12,17 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  @media screen and (max-width: 749px) {
+    .no-mobile-padding {
+      padding-top: 1.5rem !important;
+      padding-bottom: 1.5rem !important;
+    }
+  }
+
+  .no-top-margin {
+    margin-top: 0.5rem !important;
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -62,7 +73,7 @@
         <div class="image-with-text__text-item grid__item">
           <div
             id="ImageWithText--{{ section.id }}"
-            class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.height }} content-container{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}"
+            class="no-mobile-padding image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.height }} content-container{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}"
           >
             {%- for block in section.blocks -%}
               {% case block.type %}
@@ -75,7 +86,7 @@
                   </h2>
                 {%- when 'caption' -%}
                   <p
-                    class="image-with-text__text image-with-text__text--caption {{ block.settings.text_style }} {{ block.settings.text_style }}--{{ block.settings.text_size }} {{ block.settings.text_style }}"
+                    class="no-top-margin image-with-text__text image-with-text__text--caption {{ block.settings.text_style }} {{ block.settings.text_style }}--{{ block.settings.text_size }} {{ block.settings.text_style }}"
                     {{ block.shopify_attributes }}
                   >
                     {{ block.settings.caption | escape }}
