@@ -667,6 +667,12 @@
           },
           "options__2": {
             "label": "Badge"
+          },
+          "options__3": {
+            "label": "Pill"
+          },
+          "options__4": {
+            "label": "None"
           }
         }
       },

@@ -46,6 +46,16 @@
     justify-content: center;
   }
 
+  .custom-collection-name-pill {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+  }
+
   .custom-collection-name-shadow {
     position: absolute;
     width: 100%;
@@ -89,12 +99,32 @@
     align-content: center;
   }
 
+  .custom-pill {
+    width: 80%;
+    height: 3rem;
+    color: white;
+    background-color: rgb(var(--color-button));
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    line-height: 1.1;
+    padding: 0.5rem 1.3rem 0.6rem 1.3rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 16px;
+    align-content: center;
+    margin-bottom: 10px;
+  }
+
   #collection-card:hover .custom-badge {
     background-color: rgba(var(--color-button), 1);
   }
 {% endstyle %}
 
-<div id="collection-card" class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}">
+<div
+  id="collection-card"
+  class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}"
+>
   <a href="{{ card_collection.url }}">
     <div
       class="
@@ -183,18 +213,33 @@
         {%- endif -%}
         {% if title_position == 'badge' %}
           {% comment %}  div to be removed for badge {% endcomment %}
-            <div class="custom-collection-name-badge">
-              <span
+          <div class="custom-collection-name-badge">
+            <span
               {% comment %}  badge custom-badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }} {% endcomment %}
-                class="custom-badge"
-              >
-                {%- if card_collection.title != blank -%}
-                  {{- card_collection.title | escape -}}
-                {%- else -%}
-                  {{ 'onboarding.collection_title' | t }}
-                {%- endif -%}
-              </span>
-            </div>
+              class="custom-badge"
+            >
+              {%- if card_collection.title != blank -%}
+                {{- card_collection.title | escape -}}
+              {%- else -%}
+                {{ 'onboarding.collection_title' | t }}
+              {%- endif -%}
+            </span>
+          </div>
+        {% endif %}
+        {% if title_position == 'pill' %}
+          {% comment %}  div to be removed for badge {% endcomment %}
+          <div class="custom-collection-name-pill">
+            <span
+              {% comment %}  badge custom-badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }} {% endcomment %}
+              class="custom-pill"
+            >
+              {%- if card_collection.title != blank -%}
+                {{- card_collection.title | escape -}}
+              {%- else -%}
+                {{ 'onboarding.collection_title' | t }}
+              {%- endif -%}
+            </span>
+          </div>
         {% endif %}
       </div>
       {% if title_position == 'bottom' %}
