@@ -39,7 +39,7 @@
               {%- if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in' -%}
                 {%- assign widths = '198, 432, 642, 900, 1284, 1800' -%}
                 {%- capture sizes -%}
-              (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 1.6667 }}px,
+              (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 1 }}px,
               (min-width: 750px) calc((100vw - 130px) / 1.667), calc((100vw - 50px) / 1.667)
             {%- endcapture -%}
               {%- else -%}

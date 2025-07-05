@@ -33,9 +33,12 @@
     
     details[open] > .header__menu-bar-title .icon-caret {
       transform: rotate(180deg);
-      color: rgb(var(--color-shadow));
+      color: rgb(var(--color-button));
     }
 
+    .menu-link-style {
+      text-decoration: none;
+    }
 
 
 
@@ -48,7 +51,6 @@
 
     .header__menu-bar-child-button:hover {
       background-color: rgb(var(--color-background));
-      font-weight: 600;
     }
 
     .header__menu-bar-child {
@@ -59,7 +61,7 @@
     }
     
     .header__menu-bar-child:hover {
-      color: rgb(var(--color-shadow));
+      color: rgb(var(--color-button));
       text-decoration: underline;
     }
     
@@ -70,6 +72,15 @@
     details[open]:hover > .header__menu-bar-title {
       text-decoration-thickness: 0.2rem;
     }
+
+    details[open] > .header__menu-bar-child {
+      text-decoration: underline;
+      font-weight: 600;
+    }
+    details[open]:hover > .header__menu-bar-child {
+      text-decoration-thickness: 0.2rem;
+      font-weight: 600;
+    }
     
 
     
@@ -78,13 +89,13 @@
     }
 
     .header__active-menu-bar-title:hover {
-      color: rgb(var(--color-shadow));
+      color: rgb(var(--color-button));
       font-weight: 600;
     }
 
     .header__active-menu-bar-child {
       background-color: rgb(var(--color-background));
-      color: rgb(var(--color-shadow));
+      color: rgb(var(--color-button));
     }
 
     .list-menu-bar {
@@ -117,7 +128,7 @@
               <details id="Details-HeaderMenu-{{ forloop.index }}">
                 <summary 
                   id="HeaderMenu-{{ link.handle }}"
-				          class="header__menu-bar-title list-menu__item link focus-inset {% if link.child_active %} header__active-menu-bar-title{% endif %}"
+				          class="header__menu-bar-title list-menu__item link menu-link-style focus-inset {% if link.child_active %} header__active-menu-bar-title{% endif %}"
                 >
                   <span
                     {%- if link.child_active %}
@@ -151,15 +162,14 @@
                         <details id="Details-HeaderSubMenu-{{ link.handle }}-{{ childlink.handle }}">
                           <summary
                             id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                            class="header__menu-bar-child link link--text focus-inset caption-large"
+                            class="header__menu-bar-child link menu-link-style link--text focus-inset caption-large"
                           >
-                            <span>{{ childlink.title | escape }}</span>
                             <span
                               {%- if link.child_active %}
                                 class="header__active-menu-item"
                               {% endif %}
                             >
-                              {{- link.title | escape -}}
+                              {{- childlink.title | escape -}}
                             </span>
                             {{- 'icon-caret.svg' | inline_asset_content -}}
                           </summary>
@@ -172,7 +182,7 @@
                                 <a
                                   id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
                                   href="{{ grandchildlink.url }}"
-                                  class="header__menu-bar-child link link--text focus-inset caption-large{% if grandchildlink.current %} list-menu__item--active{% endif %}"
+                                  class="header__menu-bar-child link menu-link-style link--text focus-inset caption-large{% if grandchildlink.current %} list-menu__item--active{% endif %}"
                                   {% if grandchildlink.current %}
                                     aria-current="page"
                                   {% endif %}
@@ -193,7 +203,7 @@
             <a
               id="HeaderMenu-{{ link.handle }}"
               href="{{ link.url }}"
-              class="header__menu-bar-title list-menu__item link link--text focus-inset {% if link.current %} header__active-menu-bar-title{% endif %}"
+              class="header__menu-bar-title list-menu__item link menu-link-style link--text focus-inset {% if link.current %} header__active-menu-bar-title{% endif %}"
             >
               <span>
                 {{- link.title | escape -}}

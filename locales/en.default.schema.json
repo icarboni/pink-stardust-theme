@@ -685,10 +685,7 @@
       }
     },
     "title-image": {
-      "name": "Title image",
-      "presets": {
-        "name": "Title image"
-      }
+      "name": "Title image"
     },
     "contact-form": {
       "name": "Contact Form",
@@ -3120,8 +3117,11 @@
         "slide": {
           "name": "Slide",
           "settings": {
-            "image": {
-              "label": "Image"
+            "image_desktop": {
+              "label": "Image desktop"
+            },
+            "image_mobile": {
+              "label": "Image mobile"
             },
             "heading": {
               "label": "Heading",

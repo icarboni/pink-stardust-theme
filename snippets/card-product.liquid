@@ -43,13 +43,19 @@
 
   {% style %}
     .card__information--custom {
-      margin: 1rem 0;
+      margin: 0.2rem 0 0.7rem 0;
+    }
+
+    @media screen and (max-width: 750px) {
+      .card__information--custom {
+        margin: 0.2rem 0;
+      }
     }
 
     .quick-add-icon {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: top;
     }
 
     .round-button {
@@ -58,12 +64,25 @@
       border-radius: 50%;
       border-width: 0px;
       margin-right: 1rem;
+      margin-top: 0.5rem;
       cursor: pointer;
+    }
+    
+    @media screen and (max-width: 750px) {
+      .round-button {
+        min-width: 35px !important;
+        min-height: 35px !important;
+      }
+    }
+
+    .icon-align {
+      margin-top: 5px;
     }
 
     .quick-add-icon-button {
       background-color: rgb(var(--color-button));
       color: rgb(var(--color-button-text));
+      box-sizing: border-box;
     }
 
     .quick-add-icon-button:hover {
@@ -327,7 +346,7 @@
                             disabled
                           {% endif %}
                         >
-                            <span class="svg-wrapper-fontawesome rounded-button-icon"n>
+                            <span class="svg-wrapper-fontawesome rounded-button-icon icon-align">
                                 {{ 'fontawesome-add-cart.svg' | inline_asset_content }}
                             </span>
                           
