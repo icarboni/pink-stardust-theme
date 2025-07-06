@@ -4,11 +4,13 @@ if (!customElements.get('product-form')) {
     class ProductForm extends HTMLElement {
       constructor() {
         super();
-
+        
         this.form = this.querySelector('form');
         this.variantIdInput.disabled = false;
         this.form.addEventListener('submit', this.onSubmitHandler.bind(this));
-        this.cart = document.querySelector('cart-notification') || document.querySelector('cart-drawer');
+        this.cartNotification = document.querySelector('cart-notification');
+        this.cartDrawer = document.querySelector('cart-drawer');
+        this.cart = this.cartNotification || this.cartDrawer;
         this.submitButton = this.querySelector('[type="submit"]');
         this.submitButtonText = this.submitButton.querySelector('span');
 
@@ -32,13 +34,39 @@ if (!customElements.get('product-form')) {
         delete config.headers['Content-Type'];
 
         const formData = new FormData(this.form);
-        if (this.cart) {
-          formData.append(
-            'sections',
-            this.cart.getSectionsToRender().map((section) => section.id)
-          );
-          formData.append('sections_url', window.location.pathname);
-          this.cart.setActiveElement(document.activeElement);
+        if (this.cartNotification || this.cartDrawer) {
+          let sectionsToRequest = [];
+          
+          // Get section IDs from both cart components if they exist
+          if (this.cartNotification && this.cartDrawer) {
+            // When both exist, we need sections from both
+            const notificationSections = this.cartNotification.getSectionIdsToRequest ? 
+              this.cartNotification.getSectionIdsToRequest() : 
+              this.cartNotification.getSectionsToRender().map(section => section.id);
+            const drawerSections = this.cartDrawer.getSectionsToRender().map(section => section.id);
+            
+            // Combine and deduplicate sections
+            sectionsToRequest = [...new Set([...notificationSections, ...drawerSections])];
+          } else if (this.cartNotification) {
+            // Only notification exists
+            sectionsToRequest = this.cartNotification.getSectionIdsToRequest ? 
+              this.cartNotification.getSectionIdsToRequest() : 
+              this.cartNotification.getSectionsToRender().map(section => section.id);
+          } else if (this.cartDrawer) {
+            // Only drawer exists
+            sectionsToRequest = this.cartDrawer.getSectionsToRender().map(section => section.id);
+          }
+          
+          if (sectionsToRequest.length > 0) {
+            formData.append('sections', sectionsToRequest);
+            formData.append('sections_url', window.location.pathname);
+          }
+          
+          // Set active element on the primary cart component
+          const primaryCart = this.cartNotification || this.cartDrawer;
+          if (primaryCart && primaryCart.setActiveElement) {
+            primaryCart.setActiveElement(document.activeElement);
+          }
         }
         config.body = formData;
 
@@ -61,20 +89,12 @@ if (!customElements.get('product-form')) {
               soldOutMessage.classList.remove('hidden');
               this.error = true;
               return;
-            } else if (!this.cart) {
+            } else if (!this.cartNotification && !this.cartDrawer) {
               window.location = window.routes.cart_url;
               return;
             }
 
             const startMarker = CartPerformance.createStartingMarker('add:wait-for-subscribers');
-            if (!this.error)
-              publish(PUB_SUB_EVENTS.cartUpdate, {
-                source: 'product-form',
-                productVariantId: formData.get('id'),
-                cartData: response,
-              }).then(() => {
-                CartPerformance.measureFromMarker('add:wait-for-subscribers', startMarker);
-              });
             this.error = false;
             const quickAddModal = this.closest('quick-add-modal');
             if (quickAddModal) {
@@ -83,7 +103,24 @@ if (!customElements.get('product-form')) {
                 () => {
                   setTimeout(() => {
                     CartPerformance.measure("add:paint-updated-sections", () => {
-                      this.cart.renderContents(response);
+                      // Always try to update cart notification for user feedback
+                      if (this.cartNotification) {
+                        this.cartNotification.renderContents(response);
+                      }
+                      
+                      // Update cart drawer - if notification exists, update silently; otherwise show it
+                      if (this.cartDrawer) {
+                        if (this.cartNotification) {
+                          this.cartDrawer.updateContents(response);
+                        } else {
+                          this.cartDrawer.renderContents(response);
+                        }
+                      }
+                      
+                      // If neither exists, fallback to standard cart behavior
+                      if (!this.cartNotification && !this.cartDrawer && this.cart) {
+                        this.cart.renderContents(response);
+                      }
                     });
                   });
                 },
@@ -92,7 +129,22 @@ if (!customElements.get('product-form')) {
               quickAddModal.hide(true);
             } else {
               CartPerformance.measure("add:paint-updated-sections", () => {
-                this.cart.renderContents(response);
+                // Always try to update cart notification for user feedback
+                if (this.cartNotification) {
+                  this.cartNotification.renderContents(response);
+                }
+                // Update cart drawer - if notification exists, update silently; otherwise show it
+                if (this.cartDrawer) {
+                  if (this.cartNotification) {
+                    this.cartDrawer.updateContents(response);
+                  } else {
+                    this.cartDrawer.renderContents(response);
+                  }
+                }
+                // If neither exists, fallback to standard cart behavior
+                if (!this.cartNotification && !this.cartDrawer && this.cart) {
+                  this.cart.renderContents(response);
+                }
               });
             }
           })

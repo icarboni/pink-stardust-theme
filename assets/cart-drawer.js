@@ -89,6 +89,25 @@ class CartDrawer extends HTMLElement {
     });
   }
 
+  updateContents(parsedState) {
+    this.querySelector('.drawer__inner').classList.contains('is-empty') &&
+      this.querySelector('.drawer__inner').classList.remove('is-empty');
+    this.productId = parsedState.id;
+    this.getSectionsToRender().forEach((section) => {
+      const sectionElement = section.selector
+        ? document.querySelector(section.selector)
+        : document.getElementById(section.id);
+
+      if (!sectionElement) return;
+      sectionElement.innerHTML = this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
+    });
+
+    // Update overlay event listener without opening
+    setTimeout(() => {
+      this.querySelector('#CartDrawer-Overlay').addEventListener('click', this.close.bind(this));
+    });
+  }
+
   getSectionInnerHTML(html, selector = '.shopify-section') {
     return new DOMParser().parseFromString(html, 'text/html').querySelector(selector).innerHTML;
   }
